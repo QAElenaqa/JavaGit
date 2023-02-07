@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 public class FizzBuzzTest {
@@ -23,6 +24,7 @@ public class FizzBuzzTest {
         //Assert
         Assert.assertEquals(actualResult, expectedResult);
     }
+
     @Test
     //start == end
     public void testStartEquelEnd_HappyPath() {
@@ -33,7 +35,6 @@ public class FizzBuzzTest {
         String[] expectedResult = {"1"};
 
         //act
-
         String[] actualResult = new FizzBuzz().fizzBuzz(start, end);
 
         //Assert
@@ -44,21 +45,39 @@ public class FizzBuzzTest {
     //2. Negative testing
     // if (start > end)
     // return new String[0];
+   // @Ignore //благодаря этой аннотации этот тест не запуститься
+    @Test
 
-   // @Test
+    public void testStartLessThanEnd_StartEndAreNegative_HappyPath() {
+        //AAA
+        //arrange
+        int start = -20;
+        int end = -1;
+        String[] expectedResult = {"Buzz", "-19", "Fizz", "-17", "-16", "FizzBuzz", "-14", "-13", "Fizz", "-11",
+                "Buzz", "Fizz", "-8", "-7", "Fizz", "Buzz", "-4", "Fizz", "-2", "-1"};
 
-//    public void testStartLessThanEnd_StartEndArNegative_HappyPath() {
-//        //AAA
-//        //arrange
-//        int start = 1;
-//        int end = 1;
-//        String[] expectedResult = {};
-//
-//        //act
-//
-//        String[] actualResult = new FizzBuzz().fizzBuzz(start, end);
-//
-//        //Assert
-//        Assert.assertEquals(actualResult, expectedResult);
-//    }
+        //act
+        String[] actualResult = new FizzBuzz().fizzBuzz(start, end);
+
+        //Assert
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
+    @Test
+    //start == end
+    public void testStartGreaterThanEnd_Negative() {
+        //AAA
+        //arrange
+        int start = 20;
+        int end = 1;
+        String[] expectedResult = {};
+
+        //act
+        String[] actualResult = new FizzBuzz().fizzBuzz(start, end);
+
+        //Assert
+        Assert.assertEquals(actualResult, expectedResult);
+    }
+
 }
+
